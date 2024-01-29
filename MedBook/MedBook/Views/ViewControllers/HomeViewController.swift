@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     var spinner = UIActivityIndicatorView()
-    var dataBaseHandler: DataBaseHandler!
     var searchedData: [BookInfo] = []
     var searchTimer: Timer?
     var searching: Bool = false
@@ -26,14 +25,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let userModelName = appDelegate?.userModelName,
-              let bookModelName = appDelegate?.bookModelName else {
-                fatalError("User model name or book model name is nil.")
-            }
-
-            let userDBManager = DataBaseManager(modelName: userModelName)
-            let bookDBManager = DataBaseManager(modelName: bookModelName)
-            dataBaseHandler = DataBaseHandler(userDataBaseManager: userDBManager, bookDataBaseManager: bookDBManager)
+        self.initialiseDataBaseHandler()
         setupUI()
     }
     
@@ -88,7 +80,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        dataBaseHandler.fetchUsers(completionHandler: { [weak self] users in
+        dataBaseHandler?.fetchUsers(completionHandler: { [weak self] users in
             for user in users {
                 if user.email == self?.userEmail {
                     
@@ -96,7 +88,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         })
-        dataBaseHandler.saveUsers()
+        dataBaseHandler?.saveUsers()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

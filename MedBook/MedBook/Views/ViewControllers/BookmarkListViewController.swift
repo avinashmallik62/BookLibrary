@@ -11,21 +11,11 @@ import UIKit
 class BookmarkListViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     @IBOutlet weak var bookmarkListTableView: UITableView!
-    private var dataBaseHandler: DataBaseHandler!
     private var books = [Book]()
     
     override func viewDidLoad() {
-        guard let userModelName = appDelegate?.userModelName,
-              let bookModelName = appDelegate?.bookModelName else {
-                fatalError("User model name or book model name is nil.")
-            }
-
-        let userDBManager = DataBaseManager(modelName: userModelName)
-        let bookDBManager = DataBaseManager(modelName: bookModelName)
-        dataBaseHandler = DataBaseHandler(userDataBaseManager: userDBManager, bookDataBaseManager: bookDBManager)
-        
-        
-        dataBaseHandler.fetchBooks { [weak self] books in
+        self.initialiseDataBaseHandler()
+        dataBaseHandler?.fetchBooks { [weak self] books in
             self?.books = books
             print("books", books)
             self?.bookmarkListTableView.reloadData()

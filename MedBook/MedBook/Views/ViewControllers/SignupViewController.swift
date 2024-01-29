@@ -14,8 +14,6 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     let signupViewModel = SignupViewModel()
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    var dataBaseHandler: DataBaseHandler!
     var selectedCountry: String?
     var countries: [String] = [String]()
     
@@ -33,8 +31,8 @@ class SignupViewController: UIViewController {
             errorLabel.text = ErrorMessages.passwordValidationError
         } else {
             errorLabel.isHidden = true
-            dataBaseHandler.addUser(user: UserModel(email: email, password: password, country: selectedCountry))
-            dataBaseHandler.saveUsers()
+            dataBaseHandler?.addUser(user: UserModel(email: email, password: password, country: selectedCountry))
+            dataBaseHandler?.saveUsers()
             
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let loginVC = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
@@ -44,17 +42,7 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let userModelName = appDelegate?.userModelName,
-              let bookModelName = appDelegate?.bookModelName else {
-                fatalError("User model name or book model name is nil.")
-            }
-
-            let userDBManager = DataBaseManager(modelName: userModelName)
-            let bookDBManager = DataBaseManager(modelName: bookModelName)
-            dataBaseHandler = DataBaseHandler(userDataBaseManager: userDBManager, bookDataBaseManager: bookDBManager)
-        
-        
+        self.initialiseDataBaseHandler()
         signupViewModel.fetchCountries { result in
             switch result {
             case .success(let data):

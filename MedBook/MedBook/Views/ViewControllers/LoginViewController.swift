@@ -13,20 +13,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var PasswordTextField: UITextField!
     @IBOutlet weak var errorTextField: UILabel!
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
-    var dataBaseHandler: DataBaseHandler!
-    
     override func viewDidLoad() {
-        
-        guard let userModelName = appDelegate?.userModelName,
-              let bookModelName = appDelegate?.bookModelName else {
-                fatalError("User model name or book model name is nil.")
-            }
-
-            let userDBManager = DataBaseManager(modelName: userModelName)
-            let bookDBManager = DataBaseManager(modelName: bookModelName)
-            dataBaseHandler = DataBaseHandler(userDataBaseManager: userDBManager, bookDataBaseManager: bookDBManager)
-        
+        self.initialiseDataBaseHandler()
         super.viewDidLoad()
     }
 
@@ -51,7 +39,7 @@ class LoginViewController: UIViewController {
     }
     
     func checkIfUserExists(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
-        dataBaseHandler.fetchUsers { users in
+        dataBaseHandler?.fetchUsers { users in
             for user in users {
                 if user.email == email && user.password == password {
                     completionHandler(true)
