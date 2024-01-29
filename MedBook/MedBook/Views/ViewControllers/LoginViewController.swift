@@ -23,6 +23,10 @@ class LoginViewController: UIViewController {
     @IBAction func LoginButtonTapped(_ sender: UIButton) {
         checkIfUserExists(email: EmailTextField.text!, password: PasswordTextField.text!) { result in
             if result {
+                DispatchQueue.main.async {
+                    self.errorTextField.isHidden = true
+                    self.errorTextField.text = ""
+                }
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let homeVC = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
                 homeVC.userEmail = self.EmailTextField.text!
@@ -40,10 +44,6 @@ class LoginViewController: UIViewController {
         databaseHandler.fetchUsers { users in
             for user in users {
                 if user.email == email && user.password == password {
-//                    UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
-//                    UserDefaults.standard.synchronize()
-//                    self.appDel.window!.rootViewController = HomeViewController()
-//                    self.appDel.window!.makeKeyAndVisible()
                     completionHandler(true)
                     break
                 }

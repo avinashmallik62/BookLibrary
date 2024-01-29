@@ -13,3 +13,8 @@ enum APIs {
     static let countryListingURL = "https://api.first.org/data/v1/countries"
     static let coverImageURL = "https://covers.openlibrary.org/b/id/"
 }
+
+enum ErrorMessages {
+    static let emailValidationError = "Please Enter a valid email address"
+    static let passwordValidationError = "Password should be atleast Minimum 8 Characters, At least 1 number, At least 1 Uppercase Character, At least 1 Special Character"
+}

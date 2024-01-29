@@ -26,10 +26,10 @@ class SignupViewController: UIViewController {
         
         if !signupViewModel.performValidationForEmail(email: email) {
             errorLabel.isHidden = false
-            errorLabel.text = "please enter a valid email"
+            errorLabel.text = ErrorMessages.emailValidationError
         } else if !signupViewModel.performValidationForPassword(password: password) {
             errorLabel.isHidden = false
-            errorLabel.text = "Minimum 8 Characters, At least 1 number, At least 1 Uppercase Character, At least 1 Special Character"
+            errorLabel.text = ErrorMessages.passwordValidationError
         } else {
             errorLabel.isHidden = true
             databaseHandler.addUser(user: UserModel(email: email, password: password, country: selectedCountry))
@@ -78,4 +78,33 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let country = countries[row]
         self.selectedCountry = country
     }
+}
+
+
+extension SignupViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            if textField == emailTextField {
+                let email = emailTextField.text ?? ""
+                if !signupViewModel.performValidationForEmail(email: email) {
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = ErrorMessages.emailValidationError
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = ""
+                    }
+                }
+            } else if textField == passwordTextField {
+                let password = passwordTextField.text ?? ""
+                if !signupViewModel.performValidationForPassword(password: password) {
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = ErrorMessages.passwordValidationError
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = ""
+                    }
+                }
+            }
+        }
 }
