@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E111F5A02B4E9770000DE817 /* UserDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E111F59F2B4E9770000DE817 /* UserDatabaseManager.swift */; };
 		E111F5A22B4E97A8000DE817 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E111F5A12B4E97A8000DE817 /* DatabaseHandler.swift */; };
 		E1B61E8D2B4BD6AB003D4707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B61E8C2B4BD6AB003D4707 /* AppDelegate.swift */; };
 		E1B61E8F2B4BD6AB003D4707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B61E8E2B4BD6AB003D4707 /* SceneDelegate.swift */; };
@@ -31,9 +30,9 @@
 		E1B61F5F2B4D260A003D4707 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B61F5E2B4D260A003D4707 /* SignupViewModel.swift */; };
 		E1B61F622B4D294A003D4707 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B61F602B4D294A003D4707 /* UserModel.xcdatamodeld */; };
 		E1B89B762B5567BD004F1E64 /* BookModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B89B742B5567BD004F1E64 /* BookModel.xcdatamodeld */; };
-		E1B89B782B55689D004F1E64 /* BookDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B89B772B55689D004F1E64 /* BookDatabaseManager.swift */; };
 		E1B89B7A2B557B3A004F1E64 /* BookmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B89B792B557B3A004F1E64 /* BookmarkListViewController.swift */; };
 		E1B89B7E2B55835D004F1E64 /* BookmarkListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B89B7D2B55835D004F1E64 /* BookmarkListTVC.swift */; };
+		E1DE7A9C2B67A95900515223 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE7A9B2B67A95900515223 /* DataBaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E111F59F2B4E9770000DE817 /* UserDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabaseManager.swift; sourceTree = "<group>"; };
 		E111F5A12B4E97A8000DE817 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		E1B61E892B4BD6AB003D4707 /* MedBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B61E8C2B4BD6AB003D4707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,9 +80,9 @@
 		E1B61F5E2B4D260A003D4707 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		E1B61F612B4D294A003D4707 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		E1B89B752B5567BD004F1E64 /* BookModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookModel.xcdatamodel; sourceTree = "<group>"; };
-		E1B89B772B55689D004F1E64 /* BookDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDatabaseManager.swift; sourceTree = "<group>"; };
 		E1B89B792B557B3A004F1E64 /* BookmarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListViewController.swift; sourceTree = "<group>"; };
 		E1B89B7D2B55835D004F1E64 /* BookmarkListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListTVC.swift; sourceTree = "<group>"; };
+		E1DE7A9B2B67A95900515223 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,8 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				E1B89B7F2B5587F8004F1E64 /* DataModels */,
-				E111F59F2B4E9770000DE817 /* UserDatabaseManager.swift */,
-				E1B89B772B55689D004F1E64 /* BookDatabaseManager.swift */,
+				E1DE7A9B2B67A95900515223 /* DataBaseManager.swift */,
 				E111F5A12B4E97A8000DE817 /* DatabaseHandler.swift */,
 			);
 			path = DataBaseHandlers;
@@ -400,7 +397,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E111F5A02B4E9770000DE817 /* UserDatabaseManager.swift in Sources */,
 				E1B61EBD2B4BDA87003D4707 /* LoginViewController.swift in Sources */,
 				E1B61ECB2B4BE9A8003D4707 /* HomeViewModel.swift in Sources */,
 				E1B61EBF2B4BDE68003D4707 /* BookDetailsTableViewCell.swift in Sources */,
@@ -410,12 +406,12 @@
 				E1B61E8D2B4BD6AB003D4707 /* AppDelegate.swift in Sources */,
 				E1B89B7A2B557B3A004F1E64 /* BookmarkListViewController.swift in Sources */,
 				E1B61EC52B4BE836003D4707 /* NetworkManager.swift in Sources */,
+				E1DE7A9C2B67A95900515223 /* DataBaseManager.swift in Sources */,
 				E111F5A22B4E97A8000DE817 /* DatabaseHandler.swift in Sources */,
 				E1B89B7E2B55835D004F1E64 /* BookmarkListTVC.swift in Sources */,
 				E1B89B762B5567BD004F1E64 /* BookModel.xcdatamodeld in Sources */,
 				E1B61F5B2B4D23BF003D4707 /* SignupViewController.swift in Sources */,
 				E1B61EC92B4BE904003D4707 /* Constants.swift in Sources */,
-				E1B89B782B55689D004F1E64 /* BookDatabaseManager.swift in Sources */,
 				E1B61EC72B4BE85A003D4707 /* BookService.swift in Sources */,
 				E1B61F5F2B4D260A003D4707 /* SignupViewModel.swift in Sources */,
 				E1B61E8F2B4BD6AB003D4707 /* SceneDelegate.swift in Sources */,

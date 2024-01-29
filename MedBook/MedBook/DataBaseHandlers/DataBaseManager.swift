@@ -2,22 +2,20 @@
 //  DataBaseManager.swift
 //  MedBook
 //
-//  Created by Avinash Kumar on 14/01/24.
+//  Created by Avinash Kumar on 29/01/24.
 //
-import Foundation
 import CoreData
 import UIKit
 
-final class UserDataBaseManager {
+final class DataBaseManager {
     private var persistentContainer: NSPersistentContainer?
-    private let context: NSManagedObjectContext
+    private var context: NSManagedObjectContext
     private let delegate = (UIApplication.shared.delegate as? AppDelegate)
+    private let modelName: String
     
-    required init() {
-        if let userModelName = delegate?.userModelName {
-            persistentContainer = NSPersistentContainer(name : userModelName)
-        }
-        
+    init(modelName: String) {
+        self.modelName = modelName
+        persistentContainer = NSPersistentContainer(name: modelName)
         if let persistentContainer = persistentContainer {
             persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
                 if let error = error as NSError? {
@@ -25,10 +23,9 @@ final class UserDataBaseManager {
                 }
             })
         }
-        
         self.context = persistentContainer!.viewContext
     }
-
+    
     func getContext() -> NSManagedObjectContext {
         return self.context
     }

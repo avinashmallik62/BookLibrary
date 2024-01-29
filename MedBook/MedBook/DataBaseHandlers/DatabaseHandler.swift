@@ -6,12 +6,20 @@
 //
 import Foundation
 import CoreData
+import UIKit
 
 final class DataBaseHandler {
-    private let userDataBaseManager = UserDataBaseManager()
-    private let bookDataBaseManager = BookDataBaseManager()
+    private let userDataBaseManager: DataBaseManager
+    private let bookDataBaseManager: DataBaseManager
     private var users = [User]()
     private var books = [Book]()
+    
+    init(userDataBaseManager: DataBaseManager, bookDataBaseManager: DataBaseManager, users: [User] = [User](), books: [Book] = [Book]()) {
+        self.userDataBaseManager = userDataBaseManager
+        self.bookDataBaseManager = bookDataBaseManager
+        self.users = users
+        self.books = books
+    }
     
     func saveUsers() {
         do {
